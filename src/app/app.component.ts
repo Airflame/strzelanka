@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  userFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+  isLinear = false;
+
   title = 'strzelanka';
+
+  constructor(private _formBuilder: FormBuilder) {}
 }

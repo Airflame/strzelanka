@@ -1,0 +1,51 @@
+<div class="box">
+    <mat-card>
+        <mat-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Wprowadź dane strzelanki</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Długość list</mat-label>
+                        <input matInput type="number" placeholder="20" formControlName="listLength" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext>Dalej</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="userFormGroup" label="Wypełnij listy">
+                <form [formGroup]="userFormGroup">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Użytkownik</mat-label>
+                        <input matInput placeholder="Użytkownik" formControlName="user" required>
+                    </mat-form-field>
+                    <button mat-button [disabled]="!userFormGroup.valid" (click)="addList()">Dodaj</button>
+                    <div class="lists">
+                        <mat-accordion>
+                            <mat-expansion-panel hideToggle *ngFor="let list of lists">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                {{list.user}}
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p>This is the primary content of the panel.</p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                    <div>
+                        <button mat-button matStepperPrevious>Wstecz</button>
+                        <button mat-button matStepperNext>Dalej</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-card>
+</div>
