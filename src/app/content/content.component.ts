@@ -17,15 +17,21 @@ export class ContentComponent implements OnInit {
     user: ['', Validators.required],
   });
 
-  lists: List[] = [];
+  listLength: number = 1;
+
+  users: any[] = [];
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
   }
 
-  addList() {
-    this.lists.push(new List(this.userFormGroup.get('user')?.value, []));
+  saveParams(): void {
+    this.listLength = parseInt(this.firstFormGroup.get('listLength')?.value!);
+  }
+
+  addList(): void {
+    this.users.push(this.userFormGroup.get('user')?.value?.toString());
     this.userFormGroup.reset();
   }
 }

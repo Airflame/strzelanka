@@ -9,7 +9,7 @@
                         <input matInput type="number" placeholder="20" formControlName="listLength" required>
                     </mat-form-field>
                     <div>
-                        <button mat-button matStepperNext>Dalej</button>
+                        <button mat-button matStepperNext (click)="saveParams()">Dalej</button>
                     </div>
                 </form>
             </mat-step>
@@ -22,13 +22,13 @@
                     <button mat-button [disabled]="!userFormGroup.valid" (click)="addList()">Dodaj</button>
                     <div class="lists">
                         <mat-accordion>
-                            <mat-expansion-panel hideToggle *ngFor="let list of lists">
+                            <mat-expansion-panel hideToggle *ngFor="let user of users">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
-                                {{list.user}}
+                                {{user}}
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <p>This is the primary content of the panel.</p>
+                                <app-list [user]="user" [listLength]="listLength"></app-list>
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>

@@ -1,0 +1,7 @@
+<div *ngFor="let item of l; let i = index;">
+    <mat-form-field class="example-full-width">
+        <mat-label>{{i+1}}.</mat-label>
+        <input matInput (change)="changeItem($event, i)">
+    </mat-form-field>
+    <br>
+</div>
