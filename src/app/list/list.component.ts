@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UserData } from '../content/user-data';
+import { ResultService } from '../result/result.service';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +22,7 @@ export class ListComponent implements OnInit {
 
   list: string[] = [];
 
-  constructor() { }
+  constructor(private resultService: ResultService) { }
 
   ngOnInit(): void {
     this.l = Array(this.listLength);
@@ -34,7 +35,9 @@ export class ListComponent implements OnInit {
     this.filledPosition.emit({user: this.user, filled: this.list.filter(item => item != undefined).length});
     console.log(event.target.value);
     console.log(i);
-    console.log(this.list)
+    console.log(this.list);
+    this.resultService.updateData(this.user, i, event.target.value);
+    console.log(this.resultService.calculateResults());
   }
 
 }

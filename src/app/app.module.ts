@@ -15,13 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContentComponent } from './content/content.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ListComponent } from './list/list.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentComponent,
     ToolbarComponent,
-    ListComponent
+    ListComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

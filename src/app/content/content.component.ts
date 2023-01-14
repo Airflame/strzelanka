@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ResultService } from '../result/result.service';
 import { UserData } from './user-data';
 
 @Component({
@@ -21,13 +22,14 @@ export class ContentComponent implements OnInit {
 
   users: UserData[] = [];
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder, private resultService: ResultService) {}
 
   ngOnInit(): void {
   }
 
   saveParams(): void {
     this.listLength = parseInt(this.firstFormGroup.get('listLength')?.value!);
+    this.resultService.setListLength(this.listLength);
   }
 
   addUser(): void {
