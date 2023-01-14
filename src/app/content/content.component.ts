@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { List } from './list';
+import { UserData } from './user-data';
 
 @Component({
   selector: 'app-content',
@@ -19,7 +19,7 @@ export class ContentComponent implements OnInit {
 
   listLength: number = 1;
 
-  users: any[] = [];
+  users: UserData[] = [];
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -30,8 +30,15 @@ export class ContentComponent implements OnInit {
     this.listLength = parseInt(this.firstFormGroup.get('listLength')?.value!);
   }
 
-  addList(): void {
-    this.users.push(this.userFormGroup.get('user')?.value?.toString());
+  addUser(): void {
+    this.users.push({user: this.userFormGroup.get('user')?.value?.toString(), filled: 0});
     this.userFormGroup.reset();
+  }
+
+  updateFilledByUser(userData: UserData): void {
+    let user: UserData | undefined = this.users.find(user => user.user == userData.user);
+    if (user != undefined) {
+      user.filled = userData.filled;
+    }
   }
 }

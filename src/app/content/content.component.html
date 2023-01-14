@@ -13,22 +13,25 @@
                     </div>
                 </form>
             </mat-step>
-            <mat-step [stepControl]="userFormGroup" label="Wypełnij listy">
+            <mat-step label="Wypełnij listy">
                 <form [formGroup]="userFormGroup">
                     <mat-form-field appearance="fill">
                         <mat-label>Użytkownik</mat-label>
-                        <input matInput placeholder="Użytkownik" formControlName="user" required>
+                        <input matInput placeholder="Użytkownik" formControlName="user">
                     </mat-form-field>
-                    <button mat-button [disabled]="!userFormGroup.valid" (click)="addList()">Dodaj</button>
+                    <button mat-button [disabled]="!userFormGroup.valid" (click)="addUser()">Dodaj</button>
                     <div class="lists">
                         <mat-accordion>
                             <mat-expansion-panel hideToggle *ngFor="let user of users">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
-                                {{user}}
+                                {{user.user}}
                                 </mat-panel-title>
+                                <mat-panel-description>
+                                    {{user.filled}}/{{listLength}}
+                                </mat-panel-description>
                             </mat-expansion-panel-header>
-                                <app-list [user]="user" [listLength]="listLength"></app-list>
+                                <app-list [user]="user.user" [listLength]="listLength" (filledPosition)="updateFilledByUser($event)"></app-list>
                             </mat-expansion-panel>
                         </mat-accordion>
                     </div>

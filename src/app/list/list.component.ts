@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserData } from '../content/user-data';
 
 @Component({
   selector: 'app-list',
@@ -13,6 +14,9 @@ export class ListComponent implements OnInit {
   @Input()
   listLength: number = 1;
 
+  @Output()
+  filledPosition: EventEmitter<UserData> = new EventEmitter();
+
   l: number[] = []
 
   list: string[] = [];
@@ -26,6 +30,8 @@ export class ListComponent implements OnInit {
 
   changeItem(event: any, i: number) {
     this.list[i] = event.target.value;
+    console.log({user: this.user, filled: this.list.filter(item => item != undefined).length});
+    this.filledPosition.emit({user: this.user, filled: this.list.filter(item => item != undefined).length});
     console.log(event.target.value);
     console.log(i);
     console.log(this.list)
