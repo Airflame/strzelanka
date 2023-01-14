@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { ListData } from './list-data';
 import { ResultRow } from './result-row';
 
@@ -12,6 +13,8 @@ export class ResultService {
   private lists: ListData[] = [];
 
   private resultRows: ResultRow[] = [];
+
+  result$: Subject<ResultRow[]> = new Subject();
 
   constructor() { }
 
@@ -46,6 +49,8 @@ export class ResultService {
         }
       })
     })
+    this.resultRows.sort((row1, row2) => row2.points - row1.points);
+    this.result$.next(this.resultRows);
     return this.resultRows;
   }
 }

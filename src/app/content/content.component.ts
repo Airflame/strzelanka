@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ResultComponent } from '../result/result.component';
 import { ResultService } from '../result/result.service';
 import { UserData } from './user-data';
 

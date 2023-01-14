@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResultRow } from './result-row';
 import { ResultService } from './result.service';
 
 @Component({
@@ -8,9 +9,13 @@ import { ResultService } from './result.service';
 })
 export class ResultComponent implements OnInit {
 
+  resultRows: ResultRow[] = [];
+
   constructor(private resultService: ResultService) { }
 
   ngOnInit(): void {
+    this.resultService.result$.subscribe(resultRows => {
+      this.resultRows = resultRows;
+    });
   }
-
 }

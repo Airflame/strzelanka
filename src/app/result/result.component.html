@@ -1,1 +1,4 @@
-<p>result works!</p>
+
+<div class="results" *ngFor="let row of resultRows; let i = index">
+  {{i+1}}. {{row.value}} - {{row.points}} pkt
+</div>
